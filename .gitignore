@@ -1,7 +1,7 @@
 
 
 node_modules/
-config/connect.php
+database.php
 
 img/
 icons/

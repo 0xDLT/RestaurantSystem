@@ -1,3 +1,18 @@
+<?php session_start();?>
+
+
+<?php
+if (isset($_SESSION['id'])) {
+    echo "<pre>";
+    print_r($_SESSION); 
+    echo "</pre>";
+} else {
+    echo "User is not logged in.";
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,13 +26,20 @@
             <h1 class="text-amber-400 text-2xl font-bold">Restaurant</h1>
             <nav>
                 <ul class="flex space-x-4">
-                    <li><a href="#" class="text-white hover:text-amber-400">Home</a></li>
-                    <li><a href="#" class="text-white hover:text-amber-400">About</a></li>
+                    <li><a href="../app/App.php" class="text-white hover:text-amber-400" >Home</a></li>
+                    <li><a href="#about-us" class="text-white hover:text-amber-400" class="scroll-link">About</a></li>
                     <li><a href="#" class="text-white hover:text-amber-400">Services</a></li>
                     <li><a href="#" class="text-white hover:text-amber-400">Contact</a></li>
-                    <li><a href="#" class="text-white hover:text-amber-400">Booking</a></li>
+                    <li><a href="#booking" class="text-white hover:text-amber-400" class="scroll-link">Booking</a></li>
                     <li><a href="#" class="text-white hover:text-amber-400">Cart</a></li>
-                    <li><a href="#" class="text-white hover:text-amber-400">Login</a></li>
+                    <?php if (isset($_SESSION['id'])): ?>
+                        <!-- If user is logged in, show their first name -->
+                        <li class="text-white">Welcome, <?php echo htmlspecialchars(strtoupper($_SESSION['first_name'])); ?></li>
+                        <li><a href="../logs/sign-out.php" class="text-white hover:text-amber-400">Logout</a></li>
+                    <?php else: ?>
+                        <!-- If user is not logged in, show login link -->
+                        <li><a href="../logs/sign-in.php" class="text-white hover:text-amber-400">Login</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
         </div>

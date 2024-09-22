@@ -1,5 +1,4 @@
-<?php require '../config/connect.php';?>
-
+<?php require '../config/database.php';?>
 
 
 <!DOCTYPE html>
@@ -9,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/input.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" />
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
-    <link rel="stylesheet" href="../css/input.css">
     <title>Restaurant</title>
 </head>
 <body>
@@ -30,7 +29,7 @@
                 Savory Haven is your go-to destination for unforgettable dining experiences.</p>
             
             <div class="absolute bottom-0 left-0 p-4">
-                <button class="bg-amber-400 text-white text-6xl font-bold py-10 px-11 rounded-[30px] hover:bg-white hover:text-amber-400">
+                <button class="bg-amber-400 text-white text-6xl mb-10 ml-10 font-bold py-10 px-11 rounded-[30px] hover:bg-white hover:text-amber-400">
                     BOOK A TABLE
                 </button>
             </div>
@@ -65,7 +64,7 @@
     </div>
     
     <!--about us-->
-    <div class="container mx-auto px-4 py-8 mt-64" data-aos="fade-up" data-aos-delay="100"> <!-- Staggered delay -->
+    <div id="about-us" class="container mx-auto px-4 py-8 mt-64" data-aos="fade-up" data-aos-delay="100"> <!-- Staggered delay -->
     <h2 class="text-3xl font-bold text-center mb-6 text-amber-400" data-aos="fade-up" data-aos-delay="200">About Us</h2> <!-- Delayed for the header -->
     <div class="flex items-center" data-aos="fade-up" data-aos-delay="300"> <!-- Delayed for the flex container -->
         <img src="../img/restaurant.jpg" alt="Restaurant Image" class="w-1/3 h-auto mr-4 rounded-lg">
@@ -170,54 +169,54 @@
 
 
         <!--book A table panil-->
-    <div class="bg-cover bg-center h-screen flex flex-col mt-64" style="background-image: url('../img/food.jpg');"> 
+    <div id="booking" class="bg-cover bg-center h-screen flex flex-col mt-64" style="background-image: url('../img/food.jpg');"> 
         <div class="flex flex-col justify-center items-start h-full p-4">
         <div class="max-w-4xl mx-auto text-center py-12 px-6 bg-blue-900 text-white rounded-lg shadow-lg">
-    <!-- Booking Header -->
-    <h2 class="text-yellow-400 text-2xl font-medium uppercase mb-2">Booking --</h2>
-    <h1 class="text-4xl font-bold uppercase mb-8">Book A Table Online</h1>
+      <!-- Booking Header -->
+      <h2 class="text-yellow-400 text-2xl font-medium uppercase mb-2">Booking --</h2>
+      <h1 class="text-4xl font-bold uppercase mb-8">Book A Table Online</h1>
 
-    <!-- Booking Form -->
-    <form action="#" method="POST" class="grid grid-cols-2 gap-4">
+      <!-- Booking Form -->
+      <form action="#" method="POST" class="grid grid-cols-2 gap-4">
 
-      <!-- Your Name -->
-      <div class="col-span-2 md:col-span-1">
-        <label for="name" class="block text-lg font-medium">Your Name</label>
-        <input type="text" id="name" name="name" class="w-full mt-2 p-4 rounded-lg text-black" placeholder="Your Name">
-      </div>
-
-      <!-- Your Email -->
-      <div class="col-span-2 md:col-span-1">
-        <label for="email" class="block text-lg font-medium">Your Email</label>
-        <input type="email" id="email" name="email" class="w-full mt-2 p-4 rounded-lg text-black" placeholder="Your Email">
-      </div>
-
-      <!-- Date & Time -->
-      <div class="col-span-2 md:col-span-1">
-        <label for="datetime" class="block text-lg font-medium">Date & Time</label>
-        <input type="datetime-local" id="datetime" name="datetime" class="w-full mt-2 p-4 rounded-lg text-black">
-      </div>
-
-      <!-- No of People -->
-      <div class="col-span-2 md:col-span-1">
-        <label for="people" class="block text-lg font-medium">No Of People</label>
-        <input type="number" id="people" name="people" class="w-full mt-2 p-4 rounded-lg text-black" placeholder="No Of People">
-      </div>
-
-      <!-- Special Request -->
-      <div class="col-span-2">
-        <label for="request" class="block text-lg font-medium">Special Request</label>
-        <textarea id="request" name="request" rows="3" class="w-full mt-2 p-4 rounded-lg text-black" placeholder="Any Special Request"></textarea>
-      </div>
-
-      <!-- Submit Button -->
-      <div class="col-span-2">
-        <button type="submit" class="w-full py-3 mt-4 bg-yellow-500 text-black font-bold text-lg rounded-lg hover:bg-yellow-400 transition duration-300">Submit</button>
-      </div>
-
-    </form>
-    </div>
+        <!-- Your Name -->
+        <div class="col-span-2 md:col-span-1">
+          <label for="name" class="block text-lg font-medium">Your Name</label>
+          <input type="text" id="name" name="name" class="w-full mt-2 p-4 rounded-lg text-black" placeholder="Your Name">
         </div>
+
+        <!-- Your Email -->
+        <div class="col-span-2 md:col-span-1">
+          <label for="email" class="block text-lg font-medium">Your Email</label>
+          <input type="email" id="email" name="email" class="w-full mt-2 p-4 rounded-lg text-black" placeholder="Your Email">
+        </div>
+
+        <!-- Date & Time -->
+        <div class="col-span-2 md:col-span-1">
+          <label for="datetime" class="block text-lg font-medium">Date & Time</label>
+          <input type="datetime-local" id="datetime" name="datetime" class="w-full mt-2 p-4 rounded-lg text-black">
+        </div>
+
+        <!-- No of People -->
+        <div class="col-span-2 md:col-span-1">
+          <label for="people" class="block text-lg font-medium">No Of People</label>
+          <input type="number" id="people" name="people" class="w-full mt-2 p-4 rounded-lg text-black" placeholder="No Of People">
+        </div>
+
+        <!-- Special Request -->
+        <div class="col-span-2">
+          <label for="request" class="block text-lg font-medium">Special Request</label>
+          <textarea id="request" name="request" rows="3" class="w-full mt-2 p-4 rounded-lg text-black" placeholder="Any Special Request"></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="col-span-2">
+          <button type="submit" class="w-full py-3 mt-4 bg-yellow-500 text-black font-bold text-lg rounded-lg hover:bg-yellow-400 transition duration-300">Submit</button>
+        </div>
+
+      </form>
+      </div>
+          </div>
     </div>
 
 
@@ -319,14 +318,8 @@
 
 
 
-
-
-
-
-
-
 <!--scroll to the top button-->
-<button id="scrollToTop" class="fixed bottom-4 right-4 bg-amber-400 text-white rounded-full p-3 shadow-lg hidden transition-opacity duration-300">
+<button id="scrollToTop" class="fixed bottom-4 right-4 bg-amber-400 text-white rounded-full p-10 text-5xl shadow-lg hidden transition-opacity duration-300">
     ↑
 </button>
 
