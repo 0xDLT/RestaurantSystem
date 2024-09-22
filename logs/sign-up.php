@@ -1,6 +1,15 @@
-<?php require "../config/database.php"?>
+<?php require "../config/database.php";?>
+<div class="bg-blue-500">
+    <?php include "../app/header.php"; ?>
+</div>
 
 <?php 
+// Check if the user is already logged in
+if (isset($_SESSION['id'])) {
+    header("Location: ../app/App.php");
+    exit(); 
+}
+
     // Check if the form is submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Retrieve form data
@@ -9,12 +18,6 @@
         $email = trim($_POST['email']);
         $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT); 
     
-        // Check if the user is already logged in
-        if (isset($_SESSION['id'])) {
-            header("Location: ../app/App.php");
-            exit(); // Ensure no further code is executed
-        }
-
         try {
             // Prepare the SQL statement
             $sql = "INSERT INTO users (first_name, last_name, email, password) VALUES (:first_name, :last_name, :email, :password)";
@@ -56,10 +59,7 @@
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
     <title>SignIn</title>
 </head>
-<body class="bg-gray-100" >
-    <div class="bg-blue-500">
-        <?php include "../app/header.php";?>
-    </div>     
+<body class="bg-gray-100" >   
         
     <div class="bg-gray-100 flex items-center justify-center min-h-screen">
         <div class="bg-white p-8 rounded-lg shadow-md w-96">

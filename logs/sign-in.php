@@ -1,12 +1,15 @@
-<?php 
+<?php require "../config/database.php";?>
+<div class="bg-blue-500">
+    <?php include "../app/header.php"; ?>
+</div>
+
+<?php
 // Check if the user is already logged in
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['id'])){
     header("Location: ../app/App.php");
-    exit(); 
+     exit();
 }
 
-
-require "../config/database.php"; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve and sanitize form data
@@ -56,10 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>SignIn</title>
 </head>
 <body class="bg-gray-100" >
-    <div class="bg-blue-500">
-        <?php include "../app/header.php";?>
-    </div>        
-
+            
     <div class="bg-gray-100 flex items-center justify-center min-h-screen">
         <div class="bg-white p-8 rounded-lg shadow-md w-96">
             <h2 class="text-2xl font-bold mb-6 text-center">Sign In</h2>
