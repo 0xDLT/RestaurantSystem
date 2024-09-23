@@ -29,15 +29,30 @@
                 Savory Haven is your go-to destination for unforgettable dining experiences.</p>
             
             <div class="absolute bottom-0 left-0 p-4">
-                <button class="bg-amber-400 text-white text-6xl mb-10 ml-10 font-bold py-10 px-11 rounded-[30px] hover:bg-white hover:text-amber-400">
+                <button onclick="scrollToBooking()" class="bg-amber-400 text-white text-6xl mb-10 ml-10 font-bold py-10 px-11 rounded-[30px] hover:bg-white hover:text-amber-400">
                     BOOK A TABLE
                 </button>
             </div>
+
+            <!--scroll to booking-->
+            <script>
+              function scrollToBooking() {
+                const target = document.getElementById('booking');
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop, // Scroll to the top of the target
+                        behavior: 'smooth' // Smooth scrolling
+                    });
+                } else {
+                    console.error('Target div not found!');
+                }
+              }
+            </script>
         </div>
     </div>
     
     <!--cards-->
-    <div class="container mt-10 mx-auto px-4 py-8 mt-64">
+    <div id='contact' class="container mt-10 mx-auto px-4 py-8 mt-64">
     <h2 class="text-3xl font-bold text-center mb-6 text-amber-400">Our Services</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div class="bg-white rounded-lg shadow-md p-6 text-center transition-colors duration-300 hover:bg-amber-400 hover:text-white" data-aos="fade-up" data-aos-delay="100">
@@ -63,6 +78,25 @@
     </div>
     </div>
     
+            <!--scroll to contact-->
+            <script>
+              function scrollToService() {
+                const target = document.getElementById('contact');
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop, // Scroll to the top of the target
+                        behavior: 'smooth' // Smooth scrolling
+                    });
+                } else {
+                    console.error('Target div not found!');
+                }
+              }
+            </script>
+
+
+
+
+
     <!--about us-->
     <div id="about-us" class="container mx-auto px-4 py-8 mt-64" data-aos="fade-up" data-aos-delay="100"> <!-- Staggered delay -->
     <h2 class="text-3xl font-bold text-center mb-6 text-amber-400" data-aos="fade-up" data-aos-delay="200">About Us</h2> <!-- Delayed for the header -->
@@ -76,6 +110,23 @@
         </div>
     </div>
     </div>
+
+              <!--scroll to about us-->
+            <script>
+              function scrollToAbout() {
+                const target = document.getElementById('about-us');
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop, // Scroll to the top of the target
+                        behavior: 'smooth' // Smooth scrolling
+                    });
+                } else {
+                    console.error('Target div not found!');
+                }
+              }
+            </script>
+
+
 
 
     <!-- Food Menu Section -->
@@ -178,18 +229,6 @@
 
       <!-- Booking Form -->
       <form action="#" method="POST" class="grid grid-cols-2 gap-4">
-
-        <!-- Your Name -->
-        <div class="col-span-2 md:col-span-1">
-          <label for="name" class="block text-lg font-medium">Your Name</label>
-          <input type="text" id="name" name="name" class="w-full mt-2 p-4 rounded-lg text-black" placeholder="Your Name">
-        </div>
-
-        <!-- Your Email -->
-        <div class="col-span-2 md:col-span-1">
-          <label for="email" class="block text-lg font-medium">Your Email</label>
-          <input type="email" id="email" name="email" class="w-full mt-2 p-4 rounded-lg text-black" placeholder="Your Email">
-        </div>
 
         <!-- Date & Time -->
         <div class="col-span-2 md:col-span-1">
