@@ -217,7 +217,25 @@
         }
     </script>
 
+<!--Check if the user is logged in to submit a booking-->
+<?php
+if (isset($_SESSION['id'])) {
+  
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $booking_datetime = $_POST['datetime'];
+    $number_of_people = $_POST['people'];
+    $special_requests = $_POST['request'];
+    $user_id = $_SESSION['id']; // Assuming the user ID is stored in the session as 'id'
 
+    // Update the SQL statement to include user_id
+    $sql = "INSERT INTO bookings (user_id, booking_datetime, number_of_people, special_requests) VALUES (?, ?, ?, ?)";
+    $stmt = $dbconnect->prepare($sql);
+    $stmt->execute([$user_id, $booking_datetime, $number_of_people, $special_requests]);
+
+    echo "<script>alert('Booking done!');</script>";
+  }
+}
+?>
 
         <!--book A table panil-->
     <div id="booking" class="bg-cover bg-center h-screen flex flex-col mt-64" style="background-image: url('../img/food.jpg');"> 
@@ -233,13 +251,13 @@
         <!-- Date & Time -->
         <div class="col-span-2 md:col-span-1">
           <label for="datetime" class="block text-lg font-medium">Date & Time</label>
-          <input type="datetime-local" id="datetime" name="datetime" class="w-full mt-2 p-4 rounded-lg text-black">
+          <input type="datetime-local" id="datetime" name="datetime" class="w-full mt-2 p-4 rounded-lg text-black" require>
         </div>
 
         <!-- No of People -->
         <div class="col-span-2 md:col-span-1">
           <label for="people" class="block text-lg font-medium">No Of People</label>
-          <input type="number" id="people" name="people" class="w-full mt-2 p-4 rounded-lg text-black" placeholder="No Of People">
+          <input type="number" id="people" name="people" class="w-full mt-2 p-4 rounded-lg text-black" placeholder="No Of People" require>
         </div>
 
         <!-- Special Request -->
@@ -250,7 +268,7 @@
 
         <!-- Submit Button -->
         <div class="col-span-2">
-          <button type="submit" class="w-full py-3 mt-4 bg-yellow-500 text-black font-bold text-lg rounded-lg hover:bg-yellow-400 transition duration-300">Submit</button>
+          <button onclick="checkSession()" type="submit" class="w-full py-3 mt-4 bg-yellow-500 text-black font-bold text-lg rounded-lg hover:bg-yellow-400 transition duration-300">Submit</button>
         </div>
 
       </form>
