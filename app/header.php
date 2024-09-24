@@ -29,7 +29,7 @@ if (isset($_SESSION['id'])) {
                     <li><a href="#about-us" class="text-white hover:text-amber-400" onclick="scrollToAbout()">About</a></li>
                     <li><a href="#" class="text-white hover:text-amber-400" onclick="scrollToService()">Services</a></li>
                     <li><a href="../app/booking.php" class="text-white hover:text-amber-400">Booking</a></li>
-                    <li><a href="#" class="text-white hover:text-amber-400">Cart</a></li>
+                    <li><a href="../app/cart.php" class="text-white hover:text-amber-400">Cart</a></li>
                     <?php if (isset($_SESSION['id'])): ?>
                         <!-- If user is logged in, show their first name -->
                         <li class="text-white">Welcome, <?php echo htmlspecialchars(strtoupper($_SESSION['first_name'])); ?></li>
