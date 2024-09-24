@@ -130,92 +130,149 @@
 
 
     <!-- Food Menu Section -->
-    <section class="max-w-5xl mx-auto py-10 text-center mt-64">
-        <h2 class="text-2xl font-semibold text-yellow-700">-- FOOD MENU --</h2>
-        <h3 class="text-3xl font-bold mt-4">Most Popular Items</h3>
+<section class="max-w-5xl mx-auto py-10 text-center mt-64">
+    <h2 class="text-2xl font-semibold text-yellow-700">-- FOOD MENU --</h2>
+    <h3 class="text-3xl font-bold mt-4">Most Popular Items</h3>
 
-        <!-- Horizontal Scrollable Categories -->
-        <div class="mt-8 overflow-x-auto">
-            <div class="flex space-x-10 px-4 w-max">
+    <!-- Horizontal Scrollable Categories -->
+    <div class="mt-8 overflow-x-auto">
+        <div class="flex space-x-10 px-4 w-max">
 
-                <!-- Breakfast Category -->
-                <div class="text-left min-w-[300px]">
-                    <div class="flex flex-col items-center">
-                        <img src="https://img.icons8.com/ios-filled/50/FFC107/coffee.png" alt="Breakfast Icon" class="mb-2">
-                        <h4 class="text-xl font-semibold mb-4">Breakfast</h4>
-                    </div>
-                    <div>
-                        <!-- Breakfast Items -->
-                        <div class="space-y-4">
+            <!-- Breakfast Category -->
+            <div class="text-left min-w-[300px]">
+                <div class="flex flex-col items-center">
+                    <img src="https://img.icons8.com/ios-filled/50/FFC107/coffee.png" alt="Breakfast Icon" class="mb-2">
+                    <h4 class="text-xl font-semibold mb-4">Breakfast</h4>
+                </div>
+                <div>
+                    <!-- Breakfast Items -->
+                    <div class="space-y-4">
+                        <form action="#" method="POST">
                             <div class="border p-4 rounded-lg bg-white">
                                 <h4 class="text-lg font-semibold">Pancakes</h4>
                                 <p class="font-bold text-yellow-700">$5</p>
-                                <button class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded" onclick="addToCart()">ADD TO CART</button>
+                                <input type="hidden" name="item_name" value="Pancakes">
+                                <input type="hidden" name="price" value="5">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
                             </div>
+                        </form>
+                        <form action="#" method="POST">
                             <div class="border p-4 rounded-lg bg-white">
                                 <h4 class="text-lg font-semibold">Eggs & Toast</h4>
                                 <p class="font-bold text-yellow-700">$7</p>
-                                <button class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded" onclick="addToCart()">ADD TO CART</button>
+                                <input type="hidden" name="item_name" value="Eggs & Toast">
+                                <input type="hidden" name="price" value="7">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
+            </div>
 
-                <!-- Lunch Category -->
-                <div class="text-left min-w-[300px]">
-                    <div class="flex flex-col items-center">
-                        <img src="https://img.icons8.com/ios-filled/50/FFC107/hamburger.png" alt="Lunch Icon" class="mb-2">
-                        <h4 class="text-xl font-semibold mb-4">Lunch</h4>
-                    </div>
-                    <div>
-                        <!-- Lunch Items -->
-                        <div class="space-y-4">
+            <!-- Lunch Category -->
+            <div class="text-left min-w-[300px]">
+                <div class="flex flex-col items-center">
+                    <img src="https://img.icons8.com/ios-filled/50/FFC107/hamburger.png" alt="Lunch Icon" class="mb-2">
+                    <h4 class="text-xl font-semibold mb-4">Lunch</h4>
+                </div>
+                <div>
+                    <!-- Lunch Items -->
+                    <div class="space-y-4">
+                        <form action="#" method="POST">
                             <div class="border p-4 rounded-lg bg-white">
                                 <h4 class="text-lg font-semibold">Cheeseburger</h4>
                                 <p class="font-bold text-yellow-700">$8</p>
-                                <button class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded" onclick="addToCart()">ADD TO CART</button>
+                                <input type="hidden" name="item_name" value="Cheeseburger">
+                                <input type="hidden" name="price" value="8">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
                             </div>
+                        </form>
+                        <form action="#" method="POST">
                             <div class="border p-4 rounded-lg bg-white">
                                 <h4 class="text-lg font-semibold">Caesar Salad</h4>
                                 <p class="font-bold text-yellow-700">$6</p>
-                                <button class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded" onclick="addToCart()">ADD TO CART</button>
+                                <input type="hidden" name="item_name" value="Caesar Salad">
+                                <input type="hidden" name="price" value="6">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
+            </div>
 
-                <!-- Dinner Category -->
-                <div class="text-left min-w-[300px]">
-                    <div class="flex flex-col items-center">
-                        <img src="https://img.icons8.com/ios-filled/50/FFC107/dinner.png" alt="Dinner Icon" class="mb-2">
-                        <h4 class="text-xl font-semibold mb-4">Dinner</h4>
-                    </div>
-                    <div>
-                        <!-- Dinner Items -->
-                        <div class="space-y-4">
+            <!-- Dinner Category -->
+            <div class="text-left min-w-[300px]">
+                <div class="flex flex-col items-center">
+                    <img src="https://img.icons8.com/ios-filled/50/FFC107/dinner.png" alt="Dinner Icon" class="mb-2">
+                    <h4 class="text-xl font-semibold mb-4">Dinner</h4>
+                </div>
+                <div>
+                    <!-- Dinner Items -->
+                    <div class="space-y-4">
+                        <form action="#" method="POST">
                             <div class="border p-4 rounded-lg bg-white">
                                 <h4 class="text-lg font-semibold">Steak</h4>
                                 <p class="font-bold text-yellow-700">$12</p>
-                                <button class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded" onclick="addToCart()">ADD TO CART</button>
+                                <input type="hidden" name="item_name" value="Steak">
+                                <input type="hidden" name="price" value="12">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
                             </div>
+                        </form>
+                        <form action="#" method="POST">
                             <div class="border p-4 rounded-lg bg-white">
                                 <h4 class="text-lg font-semibold">Grilled Salmon</h4>
                                 <p class="font-bold text-yellow-700">$15</p>
-                                <button class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded" onclick="addToCart()">ADD TO CART</button>
+                                <input type="hidden" name="item_name" value="Grilled Salmon">
+                                <input type="hidden" name="price" value="15">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
-
             </div>
-        </div>
-    </section>
 
-    <script>
-        function addToCart() {
-            alert("Item added to cart!");
-        }
-    </script>
+        </div>
+    </div>
+</section>
+
+
+
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Check if the user is logged in
+  if (!isset($_SESSION['id'])) {
+      echo "You need to log in to add items to your cart.";
+      exit;
+  }
+
+  if (isset($_POST['item_name']) && isset($_POST['price']) && isset($_POST['quantity'])) {
+      $userId = $_SESSION['id']; // Get the user ID from session
+      $itemName = $_POST['item_name'];
+      $price = $_POST['price'];
+      $quantity = $_POST['quantity'];
+
+      try {
+          // Prepare the SQL statement
+          $stmt = $dbconnect->prepare("INSERT INTO cart (user_id, item_name, price, quantity) VALUES (?, ?, ?, ?)");
+          $stmt->execute([$userId, $itemName, $price, $quantity]);
+
+          echo "Item added to cart successfully.";
+      } catch (PDOException $e) {
+          echo "Error: " . $e->getMessage();
+      }
+  } else {
+      echo "Invalid request.";
+  }
+}
+?>
+
+
 
 <!--Check if the user is logged in to submit a booking-->
 <?php
@@ -233,6 +290,8 @@ if (isset($_SESSION['id'])) {
     $stmt->execute([$user_id, $booking_datetime, $number_of_people, $special_requests]);
 
     echo "<script>alert('Booking done!');</script>";
+    header('location: ../app/index.php');
+    exit();
   }
 }
 ?>
@@ -246,7 +305,7 @@ if (isset($_SESSION['id'])) {
       <h1 class="text-4xl font-bold uppercase mb-8">Book A Table Online</h1>
 
       <!-- Booking Form -->
-      <form action="#" method="POST" class="grid grid-cols-2 gap-4">
+      <form action="" method="POST" class="grid grid-cols-2 gap-4">
 
         <!-- Date & Time -->
         <div class="col-span-2 md:col-span-1">
