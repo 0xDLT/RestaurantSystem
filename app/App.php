@@ -1,3 +1,6 @@
+<?php 
+ob_start();
+?>
 <?php require '../config/database.php';?>
 
 
@@ -147,7 +150,7 @@
                 <div>
                     <!-- Breakfast Items -->
                     <div class="space-y-4">
-                        <form action="#" method="POST">
+                        <form action="" method="POST">
                             <div class="border p-4 rounded-lg bg-white">
                                 <h4 class="text-lg font-semibold">Pancakes</h4>
                                 <p class="font-bold text-yellow-700">$5</p>
@@ -157,7 +160,7 @@
                                 <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
                             </div>
                         </form>
-                        <form action="#" method="POST">
+                        <form action="" method="POST">
                             <div class="border p-4 rounded-lg bg-white">
                                 <h4 class="text-lg font-semibold">Eggs & Toast</h4>
                                 <p class="font-bold text-yellow-700">$7</p>
@@ -180,7 +183,7 @@
                 <div>
                     <!-- Lunch Items -->
                     <div class="space-y-4">
-                        <form action="#" method="POST">
+                        <form action="" method="POST">
                             <div class="border p-4 rounded-lg bg-white">
                                 <h4 class="text-lg font-semibold">Cheeseburger</h4>
                                 <p class="font-bold text-yellow-700">$8</p>
@@ -190,7 +193,7 @@
                                 <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
                             </div>
                         </form>
-                        <form action="#" method="POST">
+                        <form action="" method="POST">
                             <div class="border p-4 rounded-lg bg-white">
                                 <h4 class="text-lg font-semibold">Caesar Salad</h4>
                                 <p class="font-bold text-yellow-700">$6</p>
@@ -213,7 +216,7 @@
                 <div>
                     <!-- Dinner Items -->
                     <div class="space-y-4">
-                        <form action="#" method="POST">
+                        <form action="" method="POST">
                             <div class="border p-4 rounded-lg bg-white">
                                 <h4 class="text-lg font-semibold">Steak</h4>
                                 <p class="font-bold text-yellow-700">$12</p>
@@ -223,7 +226,7 @@
                                 <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
                             </div>
                         </form>
-                        <form action="#" method="POST">
+                        <form action="" method="POST">
                             <div class="border p-4 rounded-lg bg-white">
                                 <h4 class="text-lg font-semibold">Grilled Salmon</h4>
                                 <p class="font-bold text-yellow-700">$15</p>
@@ -247,8 +250,7 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Check if the user is logged in
   if (!isset($_SESSION['id'])) {
-      echo "You need to log in to add items to your cart.";
-      exit;
+      echo "<script>alert('You need to log in to add items to your cart.')</script>";
   }
 
   if (isset($_POST['item_name']) && isset($_POST['price']) && isset($_POST['quantity'])) {
@@ -262,13 +264,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $stmt = $dbconnect->prepare("INSERT INTO cart (user_id, item_name, price, quantity) VALUES (?, ?, ?, ?)");
           $stmt->execute([$userId, $itemName, $price, $quantity]);
 
-          echo "Item added to cart successfully.";
+          
       } catch (PDOException $e) {
           echo "Error: " . $e->getMessage();
       }
+      $_SESSION['cart'] = 'add to your cart';
+      header('location: ../app/index.php'); 
+          exit();
   } else {
       echo "Invalid request.";
   }
+}
+if (isset($_SESSION['cart'])) {
+  echo "<script>alert('" . $_SESSION['cart'] . "');</>";
+  unset($_SESSION['cart']); // Clear the message after displaying it
 }
 ?>
 
@@ -289,10 +298,14 @@ if (isset($_SESSION['id'])) {
     $stmt = $dbconnect->prepare($sql);
     $stmt->execute([$user_id, $booking_datetime, $number_of_people, $special_requests]);
 
-    echo "<script>alert('Booking done!');</script>";
+    $_SESSION['alert'] = 'Booked a table';
     header('location: ../app/index.php');
     exit();
   }
+}
+if (isset($_SESSION['alert'])) {
+  echo "<script>alert('" . $_SESSION['alert'] . "');</script>";
+  unset($_SESSION['alert']); // Clear the message after displaying it
 }
 ?>
 
@@ -472,3 +485,5 @@ if (isset($_SESSION['id'])) {
             });
         });
     </script>
+  
+<?php ob_end_flush(); ?>
