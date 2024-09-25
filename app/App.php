@@ -285,29 +285,34 @@ if (isset($_SESSION['cart'])) {
 
 <!--Check if the user is logged in to submit a booking-->
 <?php
+
 if (isset($_SESSION['id'])) {
-  
-  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $booking_datetime = $_POST['datetime'];
-    $number_of_people = $_POST['people'];
-    $special_requests = $_POST['request'];
-    $user_id = $_SESSION['id']; // Assuming the user ID is stored in the session as 'id'
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Check if the required fields are present in the POST request
+        if (isset($_POST['datetime'], $_POST['people'], $_POST['request'])) {
+            $booking_datetime = $_POST['datetime'];
+            $number_of_people = $_POST['people'];
+            $special_requests = $_POST['request'];
+            $user_id = $_SESSION['id'];
 
-    // Update the SQL statement to include user_id
-    $sql = "INSERT INTO bookings (user_id, booking_datetime, number_of_people, special_requests) VALUES (?, ?, ?, ?)";
-    $stmt = $dbconnect->prepare($sql);
-    $stmt->execute([$user_id, $booking_datetime, $number_of_people, $special_requests]);
+            // Prepare and execute the SQL statement
+            $sql = "INSERT INTO bookings (user_id, booking_datetime, number_of_people, special_requests) VALUES (?, ?, ?, ?)";
+            $stmt = $dbconnect->prepare($sql);
+            $stmt->execute([$user_id, $booking_datetime, $number_of_people, $special_requests]);
 
-    $_SESSION['alert'] = 'Booked a table';
-    header('location: ../app/index.php');
-    exit();
-  }
+            $_SESSION['alert'] = 'Booked a table';
+            header('location: ../app/index.php');
+            exit();
+        } 
+    }
 }
+
 if (isset($_SESSION['alert'])) {
-  echo "<script>alert('" . $_SESSION['alert'] . "');</script>";
-  unset($_SESSION['alert']); // Clear the message after displaying it
+    echo "<script>alert('" . $_SESSION['alert'] . "');</script>";
+    unset($_SESSION['alert']); // Clear the message after displaying it
 }
 ?>
+
 
         <!--book A table panil-->
     <div id="booking" class="bg-cover bg-center h-screen flex flex-col mt-64" style="background-image: url('../img/food.jpg');"> 
@@ -320,129 +325,107 @@ if (isset($_SESSION['alert'])) {
       <!-- Booking Form -->
       <form action="" method="POST" class="grid grid-cols-2 gap-4">
 
-        <!-- Date & Time -->
-        <div class="col-span-2 md:col-span-1">
-          <label for="datetime" class="block text-lg font-medium">Date & Time</label>
-          <input type="datetime-local" id="datetime" name="datetime" class="w-full mt-2 p-4 rounded-lg text-black" require>
-        </div>
+    <!-- Date & Time -->
+            <div class="col-span-2 md:col-span-1">
+                <label for="datetime" class="block text-lg font-medium">Date & Time</label>
+                <input type="datetime-local" id="datetime" name="datetime" class="w-full mt-2 p-4 rounded-lg text-black" required>
+            </div>
 
-        <!-- No of People -->
-        <div class="col-span-2 md:col-span-1">
-          <label for="people" class="block text-lg font-medium">No Of People</label>
-          <input type="number" id="people" name="people" class="w-full mt-2 p-4 rounded-lg text-black" placeholder="No Of People" require>
-        </div>
+            <!-- No of People -->
+            <div class="col-span-2 md:col-span-1">
+                <label for="people" class="block text-lg font-medium">No Of People</label>
+                <input type="number" id="people" name="people" class="w-full mt-2 p-4 rounded-lg text-black" placeholder="No Of People" required>
+            </div>
 
-        <!-- Special Request -->
-        <div class="col-span-2">
-          <label for="request" class="block text-lg font-medium">Special Request</label>
-          <textarea id="request" name="request" rows="3" class="w-full mt-2 p-4 rounded-lg text-black" placeholder="Any Special Request"></textarea>
-        </div>
+            <!-- Special Request -->
+            <div class="col-span-2">
+                <label for="request" class="block text-lg font-medium">Special Request</label>
+                <textarea id="request" name="request" rows="3" class="w-full mt-2 p-4 rounded-lg text-black" placeholder="Any Special Request"></textarea>
+            </div>
 
-        <!-- Submit Button -->
-        <div class="col-span-2">
-          <button onclick="checkSession()" type="submit" class="w-full py-3 mt-4 bg-yellow-500 text-black font-bold text-lg rounded-lg hover:bg-yellow-400 transition duration-300">Submit</button>
-        </div>
-
-      </form>
+            <!-- Submit Button -->
+            <div class="col-span-2">
+                <button type="submit" class="w-full py-3 mt-4 bg-yellow-500 text-black font-bold text-lg rounded-lg hover:bg-yellow-400 transition duration-300">Submit</button>
+            </div>
+        </form>
       </div>
           </div>
     </div>
 
 
-    <!--CUSTOMERS COMMENTS-->
+<?php
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['id'])) {
+  $comment = trim($_POST['comment']);
+  $userId = $_SESSION['id'];
+
+  if (!empty($comment)) {
+      $stmt = $dbconnect->prepare("INSERT INTO comments (user_id, comment, created_at) VALUES (?, ?, NOW())");
+      $stmt->execute([$userId, $comment]);
+      header('location: ../app/index.php');
+      exit();
+  }
+}
+
+// Fetch comments to display
+$comments = $dbconnect->query("SELECT comments.comment, users.first_name, comments.created_at FROM comments JOIN users ON comments.user_id = users.id ORDER BY comments.created_at DESC")->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
 <div class="grid place-items-center mt-64 mb-64">
-  
   <h2 class="text-center text-yellow-500 text-lg font-medium mb-2">~ TESTIMONIAL ~</h2>
+
+  <!-- Comment form -->
+  <?php if (isset($_SESSION['id'])): ?>
+      <form method="POST" class="mb-4">
+          <textarea name="comment" rows="3" class="border rounded p-2 w-full" placeholder="Write your comment..." required></textarea>
+          <button type="submit" class="mt-2 bg-yellow-500 text-white rounded p-2">Submit</button>
+      </form>
+  <?php else: ?>
+      <p class="text-yellow-500">Please log in to leave a comment.</p>
+  <?php endif; ?>
 
   <!-- Horizontal scroll container -->
   <div id="testimonialContainer" class="w-full max-w-screen-lg overflow-x-auto no-scrollbar whitespace-nowrap py-4">
-  
-    <!-- Flex container for side-by-side testimonials -->
-    <div id="scrollContent" class="inline-flex space-x-4">
-      
-      <!-- Testimonial Box 1 -->
-      <div class="rounded-lg min-w-[300px] bg-white p-4">
-        <!-- Testimonial Card -->
-        <div class="bg-yellow-400 p-6 rounded-lg">
-          <!-- Quote Icon -->
-          <div class="text-white text-5xl leading-none mb-4">
-            &#10077;
-          </div>
-          <!-- Testimonial Text -->
-          <p class="text-white text-lg font-light">
-            aoiwndoawmc oaiwmcoawmc pawdk awpokdpawkdaop wkdpoakwd kawkdapowk oiamcioam wocma
-          </p>
-          <!-- Name -->
-          <p class="mt-6 text-white text-3xl font-bold">
-            TOMAS 123
-          </p>
-        </div>
+      <div id="scrollContent" class="inline-flex space-x-4">
+          <!-- Display comments -->
+          <?php foreach ($comments as $comment): ?>
+              <div class="rounded-lg min-w-[300px] bg-white p-4">
+                  <div class="bg-yellow-400 p-6 rounded-lg">
+                      <div class="text-white text-5xl leading-none mb-4">&#10077;</div>
+                      <p class="text-white text-lg font-light"><?= htmlspecialchars($comment['comment']) ?></p>
+                      <p class="mt-6 text-white text-3xl font-bold"><?= htmlspecialchars($comment['first_name']) ?></p>
+                  </div>
+              </div>
+          <?php endforeach; ?>
       </div>
-
-      <!-- Testimonial Box 2 -->
-      <div class="rounded-lg min-w-[300px] bg-white p-4">
-        <!-- Testimonial Card -->
-        <div class="bg-yellow-400 p-6 rounded-lg">
-          <!-- Quote Icon -->
-          <div class="text-white text-5xl leading-none mb-4">
-            &#10077;
-          </div>
-          <!-- Testimonial Text -->
-          <p class="text-white text-lg font-light">
-            aoiwndoawmc oaiwmcoawmc pawdk awpokdpawkdaop wkdpoakwd kawkdapowk oiamcioam wocma
-          </p>
-          <!-- Name -->
-          <p class="mt-6 text-white text-3xl font-bold">
-            ALEX 456
-          </p>
-        </div>
-      </div>
-
-      <!-- Testimonial Box 3 -->
-      <div class="rounded-lg min-w-[300px] bg-white p-4">
-        <!-- Testimonial Card -->
-        <div class="bg-yellow-400 p-6 rounded-lg">
-          <!-- Quote Icon -->
-          <div class="text-white text-9xl leading-none mb-4">
-            &#10077;
-          </div>
-          <!-- Testimonial Text -->
-          <p class="text-white text-lg font-light">
-            aoiwndoawmc oaiwmcoawmc pawdk awpokdpawkdaop wkdpoakwd kawkdapowk oiamcioam wocma
-          </p>
-          <!-- Name -->
-          <p class="mt-6 text-white text-3xl font-bold">
-            ALEX 789
-          </p>
-        </div>
-      </div>
-
-      <!-- Duplicate the same testimonials for seamless loop -->
-      <!-- You can add more testimonials here -->
-
-    </div>
   </div>
 </div>
 
+
 <script>
-  // Auto-scroll and infinite loop
   const container = document.getElementById('testimonialContainer');
   const scrollContent = document.getElementById('scrollContent');
+
+  // Clone the content to create an infinite effect
+  const clonedContent = scrollContent.cloneNode(true);
+  container.appendChild(clonedContent);
 
   let scrollSpeed = 1; // Adjust this value for faster/slower scrolling
 
   function autoScroll() {
     container.scrollLeft += scrollSpeed;
 
-    // If the scroll reaches the end, reset it to the beginning for infinite scrolling
-    if (container.scrollLeft >= scrollContent.scrollWidth - container.clientWidth) {
-      container.scrollLeft = 0;
+    // If the scroll reaches the end of the original content, adjust scroll position
+    if (container.scrollLeft >= scrollContent.scrollWidth) {
+      container.scrollLeft = 0; // Reset to the start of the original content
     }
   }
 
   // Set the auto-scroll interval
   setInterval(autoScroll, 20); // Adjust the interval for smoother scrolling
 </script>
+
 
 
 
