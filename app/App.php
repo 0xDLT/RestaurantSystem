@@ -150,7 +150,7 @@ ob_start();
                 <div>
                     <!-- Breakfast Items -->
                     <div class="space-y-4">
-                        <form action="" method="POST">
+                        <form action="../reservations/cart.php" method="POST">
                             <div class="border p-4 rounded-lg bg-white">
                                 <h4 class="text-lg font-semibold">Pancakes</h4>
                                 <p class="font-bold text-yellow-700">$5</p>
@@ -160,7 +160,7 @@ ob_start();
                                 <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
                             </div>
                         </form>
-                        <form action="" method="POST">
+                        <form action="../reservations/cart.php" method="POST">
                             <div class="border p-4 rounded-lg bg-white">
                                 <h4 class="text-lg font-semibold">Eggs & Toast</h4>
                                 <p class="font-bold text-yellow-700">$7</p>
@@ -183,7 +183,7 @@ ob_start();
                 <div>
                     <!-- Lunch Items -->
                     <div class="space-y-4">
-                        <form action="" method="POST">
+                        <form action="../reservations/cart.php" method="POST">
                             <div class="border p-4 rounded-lg bg-white">
                                 <h4 class="text-lg font-semibold">Cheeseburger</h4>
                                 <p class="font-bold text-yellow-700">$8</p>
@@ -193,7 +193,7 @@ ob_start();
                                 <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
                             </div>
                         </form>
-                        <form action="" method="POST">
+                        <form action="../reservations/cart.php" method="POST">
                             <div class="border p-4 rounded-lg bg-white">
                                 <h4 class="text-lg font-semibold">Caesar Salad</h4>
                                 <p class="font-bold text-yellow-700">$6</p>
@@ -216,7 +216,7 @@ ob_start();
                 <div>
                     <!-- Dinner Items -->
                     <div class="space-y-4">
-                        <form action="" method="POST">
+                        <form action="../reservations/cart.php" method="POST">
                             <div class="border p-4 rounded-lg bg-white">
                                 <h4 class="text-lg font-semibold">Steak</h4>
                                 <p class="font-bold text-yellow-700">$12</p>
@@ -226,7 +226,7 @@ ob_start();
                                 <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
                             </div>
                         </form>
-                        <form action="" method="POST">
+                        <form action="./reservations/cart.php" method="POST">
                             <div class="border p-4 rounded-lg bg-white">
                                 <h4 class="text-lg font-semibold">Grilled Salmon</h4>
                                 <p class="font-bold text-yellow-700">$15</p>
@@ -246,74 +246,6 @@ ob_start();
 
 
 
-<?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // Check if the user is logged in
-  if (!isset($_SESSION['id'])) {
-      echo "<script>alert('You need to log in to add items to your cart.')</script>";
-  }
-
-  if (isset($_POST['item_name']) && isset($_POST['price']) && isset($_POST['quantity'])) {
-      $userId = $_SESSION['id']; // Get the user ID from session
-      $itemName = $_POST['item_name'];
-      $price = $_POST['price'];
-      $quantity = $_POST['quantity'];
-
-      try {
-          // Prepare the SQL statement
-          $stmt = $dbconnect->prepare("INSERT INTO cart (user_id, item_name, price, quantity) VALUES (?, ?, ?, ?)");
-          $stmt->execute([$userId, $itemName, $price, $quantity]);
-
-          
-      } catch (PDOException $e) {
-          echo "Error: " . $e->getMessage();
-      }
-      $_SESSION['cart'] = 'add to your cart';
-      header('location: ../app/index.php'); 
-          exit();
-  } else {
-      echo "Invalid request.";
-  }
-}
-if (isset($_SESSION['cart'])) {
-  echo "<script>alert('" . $_SESSION['cart'] . "');</>";
-  unset($_SESSION['cart']); // Clear the message after displaying it
-}
-?>
-
-
-
-<!--Check if the user is logged in to submit a booking-->
-<?php
-
-if (isset($_SESSION['id'])) {
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Check if the required fields are present in the POST request
-        if (isset($_POST['datetime'], $_POST['people'], $_POST['request'])) {
-            $booking_datetime = $_POST['datetime'];
-            $number_of_people = $_POST['people'];
-            $special_requests = $_POST['request'];
-            $user_id = $_SESSION['id'];
-
-            // Prepare and execute the SQL statement
-            $sql = "INSERT INTO bookings (user_id, booking_datetime, number_of_people, special_requests) VALUES (?, ?, ?, ?)";
-            $stmt = $dbconnect->prepare($sql);
-            $stmt->execute([$user_id, $booking_datetime, $number_of_people, $special_requests]);
-
-            $_SESSION['alert'] = 'Booked a table';
-            header('location: ../app/index.php');
-            exit();
-        } 
-    }
-}
-
-if (isset($_SESSION['alert'])) {
-    echo "<script>alert('" . $_SESSION['alert'] . "');</script>";
-    unset($_SESSION['alert']); // Clear the message after displaying it
-}
-?>
-
-
         <!--book A table panil-->
     <div id="booking" class="bg-cover bg-center h-screen flex flex-col mt-64" style="background-image: url('../img/food.jpg');"> 
         <div class="flex flex-col justify-center items-start h-full p-4">
@@ -323,7 +255,7 @@ if (isset($_SESSION['alert'])) {
       <h1 class="text-4xl font-bold uppercase mb-8">Book A Table Online</h1>
 
       <!-- Booking Form -->
-      <form action="" method="POST" class="grid grid-cols-2 gap-4">
+      <form action="../reservations/booking.php" method="POST" class="grid grid-cols-2 gap-4">
 
     <!-- Date & Time -->
             <div class="col-span-2 md:col-span-1">
@@ -353,31 +285,23 @@ if (isset($_SESSION['alert'])) {
     </div>
 
 
+
+
+    <!--comments-->
 <?php
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['id'])) {
-  $comment = trim($_POST['comment']);
-  $userId = $_SESSION['id'];
+    $comments = []; // Initialize as empty array
 
-  if (!empty($comment)) {
-      $stmt = $dbconnect->prepare("INSERT INTO comments (user_id, comment, created_at) VALUES (?, ?, NOW())");
-      $stmt->execute([$userId, $comment]);
-      header('location: ../app/index.php');
-      exit();
-  }
-}
-
-// Fetch comments to display
-$comments = $dbconnect->query("SELECT comments.comment, users.first_name, comments.created_at FROM comments JOIN users ON comments.user_id = users.id ORDER BY comments.created_at DESC")->fetchAll(PDO::FETCH_ASSOC);
-
+    $sql = "SELECT comments.comment, users.first_name FROM comments JOIN users ON comments.user_id = users.id ORDER BY comments.created_at DESC";
+    $stmt = $dbconnect->prepare($sql);
+    $stmt->execute();
+    $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
 <div class="grid place-items-center mt-64 mb-64">
   <h2 class="text-center text-yellow-500 text-lg font-medium mb-2">~ TESTIMONIAL ~</h2>
 
   <!-- Comment form -->
   <?php if (isset($_SESSION['id'])): ?>
-      <form method="POST" class="mb-4">
+      <form action="../reservations/comments.php" method="POST" class="mb-4">
           <textarea name="comment" rows="3" class="border rounded p-2 w-full" placeholder="Write your comment..." required></textarea>
           <button type="submit" class="mt-2 bg-yellow-500 text-white rounded p-2">Submit</button>
       </form>
@@ -410,7 +334,7 @@ $comments = $dbconnect->query("SELECT comments.comment, users.first_name, commen
   // Clone the content to create an infinite effect
   const clonedContent = scrollContent.cloneNode(true);
   container.appendChild(clonedContent);
-
+ 
   let scrollSpeed = 1; // Adjust this value for faster/slower scrolling
 
   function autoScroll() {
