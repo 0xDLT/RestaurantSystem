@@ -36,21 +36,6 @@ ob_start();
                     BOOK A TABLE
                 </button>
             </div>
-
-            <!--scroll to booking-->
-            <script>
-              function scrollToBooking() {
-                const target = document.getElementById('booking');
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop, // Scroll to the top of the target
-                        behavior: 'smooth' // Smooth scrolling
-                    });
-                } else {
-                    console.error('Target div not found!');
-                }
-              }
-            </script>
         </div>
     </div>
     
@@ -81,25 +66,7 @@ ob_start();
     </div>
     </div>
     
-            <!--scroll to contact-->
-            <script>
-              function scrollToService() {
-                const target = document.getElementById('contact');
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop, // Scroll to the top of the target
-                        behavior: 'smooth' // Smooth scrolling
-                    });
-                } else {
-                    console.error('Target div not found!');
-                }
-              }
-            </script>
-
-
-
-
-
+            
     <!--about us-->
     <div id="about-us" class="container mx-auto px-4 py-8 mt-64" data-aos="fade-up" data-aos-delay="100"> <!-- Staggered delay -->
     <h2 class="text-3xl font-bold text-center mb-6 text-amber-400" data-aos="fade-up" data-aos-delay="200">About Us</h2> <!-- Delayed for the header -->
@@ -114,173 +81,157 @@ ob_start();
     </div>
     </div>
 
-              <!--scroll to about us-->
-            <script>
-              function scrollToAbout() {
-                const target = document.getElementById('about-us');
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop, // Scroll to the top of the target
-                        behavior: 'smooth' // Smooth scrolling
-                    });
-                } else {
-                    console.error('Target div not found!');
-                }
-              }
-            </script>
-
-
+              
 
 
     <!-- Food Menu Section -->
-<section class="max-w-5xl mx-auto py-10 text-center mt-64">
+    <section class="max-w-5xl mx-auto py-10 text-center mt-64">
     <h2 class="text-2xl font-semibold text-yellow-700">-- FOOD MENU --</h2>
     <h3 class="text-3xl font-bold mt-4">Most Popular Items</h3>
 
     <!-- Horizontal Scrollable Categories -->
-    <div class="mt-8 overflow-x-auto">
-        <div class="flex space-x-10 px-4 w-max">
+        <div class="mt-8 overflow-x-auto">
+            <div class="flex space-x-10 px-4 w-max">
 
-            <!-- Breakfast Category -->
-            <div class="text-left min-w-[300px]">
-                <div class="flex flex-col items-center">
-                    <img src="https://img.icons8.com/ios-filled/50/FFC107/coffee.png" alt="Breakfast Icon" class="mb-2">
-                    <h4 class="text-xl font-semibold mb-4">Breakfast</h4>
+                <!-- Breakfast Category -->
+                <div class="text-left min-w-[300px]">
+                    <div class="flex flex-col items-center">
+                        <img src="https://img.icons8.com/ios-filled/50/FFC107/coffee.png" alt="Breakfast Icon" class="mb-2">
+                        <h4 class="text-xl font-semibold mb-4">Breakfast</h4>
+                    </div>
+                    <div>
+                        <!-- Breakfast Items -->
+                        <div class="space-y-4">
+                            <form action="../reservations/cart.php" method="POST">
+                                <div class="border p-4 rounded-lg bg-white">
+                                    <h4 class="text-lg font-semibold">Pancakes</h4>
+                                    <p class="font-bold text-yellow-700">$5</p>
+                                    <input type="hidden" name="item_name" value="Pancakes">
+                                    <input type="hidden" name="price" value="5">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
+                                </div>
+                            </form>
+                            <form action="../reservations/cart.php" method="POST">
+                                <div class="border p-4 rounded-lg bg-white">
+                                    <h4 class="text-lg font-semibold">Eggs & Toast</h4>
+                                    <p class="font-bold text-yellow-700">$7</p>
+                                    <input type="hidden" name="item_name" value="Eggs & Toast">
+                                    <input type="hidden" name="price" value="7">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <!-- Breakfast Items -->
-                    <div class="space-y-4">
-                        <form action="../reservations/cart.php" method="POST">
-                            <div class="border p-4 rounded-lg bg-white">
-                                <h4 class="text-lg font-semibold">Pancakes</h4>
-                                <p class="font-bold text-yellow-700">$5</p>
-                                <input type="hidden" name="item_name" value="Pancakes">
-                                <input type="hidden" name="price" value="5">
-                                <input type="hidden" name="quantity" value="1">
-                                <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
-                            </div>
-                        </form>
-                        <form action="../reservations/cart.php" method="POST">
-                            <div class="border p-4 rounded-lg bg-white">
-                                <h4 class="text-lg font-semibold">Eggs & Toast</h4>
-                                <p class="font-bold text-yellow-700">$7</p>
-                                <input type="hidden" name="item_name" value="Eggs & Toast">
-                                <input type="hidden" name="price" value="7">
-                                <input type="hidden" name="quantity" value="1">
-                                <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
-                            </div>
-                        </form>
+
+                <!-- Lunch Category -->
+                <div class="text-left min-w-[300px]">
+                    <div class="flex flex-col items-center">
+                        <img src="https://img.icons8.com/ios-filled/50/FFC107/hamburger.png" alt="Lunch Icon" class="mb-2">
+                        <h4 class="text-xl font-semibold mb-4">Lunch</h4>
+                    </div>
+                    <div>
+                        <!-- Lunch Items -->
+                        <div class="space-y-4">
+                            <form action="../reservations/cart.php" method="POST">
+                                <div class="border p-4 rounded-lg bg-white">
+                                    <h4 class="text-lg font-semibold">Cheeseburger</h4>
+                                    <p class="font-bold text-yellow-700">$8</p>
+                                    <input type="hidden" name="item_name" value="Cheeseburger">
+                                    <input type="hidden" name="price" value="8">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
+                                </div>
+                            </form>
+                            <form action="../reservations/cart.php" method="POST">
+                                <div class="border p-4 rounded-lg bg-white">
+                                    <h4 class="text-lg font-semibold">Caesar Salad</h4>
+                                    <p class="font-bold text-yellow-700">$6</p>
+                                    <input type="hidden" name="item_name" value="Caesar Salad">
+                                    <input type="hidden" name="price" value="6">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dinner Category -->
+                <div class="text-left min-w-[300px]">
+                    <div class="flex flex-col items-center">
+                        <img src="https://img.icons8.com/ios-filled/50/FFC107/dinner.png" alt="Dinner Icon" class="mb-2">
+                        <h4 class="text-xl font-semibold mb-4">Dinner</h4>
+                    </div>
+                    <div>
+                        <!-- Dinner Items -->
+                        <div class="space-y-4">
+                            <form action="../reservations/cart.php" method="POST">
+                                <div class="border p-4 rounded-lg bg-white">
+                                    <h4 class="text-lg font-semibold">Steak</h4>
+                                    <p class="font-bold text-yellow-700">$12</p>
+                                    <input type="hidden" name="item_name" value="Steak">
+                                    <input type="hidden" name="price" value="12">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
+                                </div>
+                            </form>
+                            <form action="./reservations/cart.php" method="POST">
+                                <div class="border p-4 rounded-lg bg-white">
+                                    <h4 class="text-lg font-semibold">Grilled Salmon</h4>
+                                    <p class="font-bold text-yellow-700">$15</p>
+                                    <input type="hidden" name="item_name" value="Grilled Salmon">
+                                    <input type="hidden" name="price" value="15">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Lunch Category -->
-            <div class="text-left min-w-[300px]">
-                <div class="flex flex-col items-center">
-                    <img src="https://img.icons8.com/ios-filled/50/FFC107/hamburger.png" alt="Lunch Icon" class="mb-2">
-                    <h4 class="text-xl font-semibold mb-4">Lunch</h4>
-                </div>
-                <div>
-                    <!-- Lunch Items -->
-                    <div class="space-y-4">
-                        <form action="../reservations/cart.php" method="POST">
-                            <div class="border p-4 rounded-lg bg-white">
-                                <h4 class="text-lg font-semibold">Cheeseburger</h4>
-                                <p class="font-bold text-yellow-700">$8</p>
-                                <input type="hidden" name="item_name" value="Cheeseburger">
-                                <input type="hidden" name="price" value="8">
-                                <input type="hidden" name="quantity" value="1">
-                                <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
-                            </div>
-                        </form>
-                        <form action="../reservations/cart.php" method="POST">
-                            <div class="border p-4 rounded-lg bg-white">
-                                <h4 class="text-lg font-semibold">Caesar Salad</h4>
-                                <p class="font-bold text-yellow-700">$6</p>
-                                <input type="hidden" name="item_name" value="Caesar Salad">
-                                <input type="hidden" name="price" value="6">
-                                <input type="hidden" name="quantity" value="1">
-                                <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Dinner Category -->
-            <div class="text-left min-w-[300px]">
-                <div class="flex flex-col items-center">
-                    <img src="https://img.icons8.com/ios-filled/50/FFC107/dinner.png" alt="Dinner Icon" class="mb-2">
-                    <h4 class="text-xl font-semibold mb-4">Dinner</h4>
-                </div>
-                <div>
-                    <!-- Dinner Items -->
-                    <div class="space-y-4">
-                        <form action="../reservations/cart.php" method="POST">
-                            <div class="border p-4 rounded-lg bg-white">
-                                <h4 class="text-lg font-semibold">Steak</h4>
-                                <p class="font-bold text-yellow-700">$12</p>
-                                <input type="hidden" name="item_name" value="Steak">
-                                <input type="hidden" name="price" value="12">
-                                <input type="hidden" name="quantity" value="1">
-                                <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
-                            </div>
-                        </form>
-                        <form action="./reservations/cart.php" method="POST">
-                            <div class="border p-4 rounded-lg bg-white">
-                                <h4 class="text-lg font-semibold">Grilled Salmon</h4>
-                                <p class="font-bold text-yellow-700">$15</p>
-                                <input type="hidden" name="item_name" value="Grilled Salmon">
-                                <input type="hidden" name="price" value="15">
-                                <input type="hidden" name="quantity" value="1">
-                                <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
         </div>
-    </div>
-</section>
+    </section>
 
 
 
         <!--book A table panil-->
     <div id="booking" class="bg-cover bg-center h-screen flex flex-col mt-64" style="background-image: url('../img/food.jpg');"> 
         <div class="flex flex-col justify-center items-start h-full p-4">
-        <div class="max-w-4xl mx-auto text-center py-12 px-6 bg-blue-900 text-white rounded-lg shadow-lg">
-      <!-- Booking Header -->
-      <h2 class="text-yellow-400 text-2xl font-medium uppercase mb-2">Booking --</h2>
-      <h1 class="text-4xl font-bold uppercase mb-8">Book A Table Online</h1>
+                <div class="max-w-4xl mx-auto text-center py-12 px-6 bg-blue-900 text-white rounded-lg shadow-lg">
+                    <!-- Booking Header -->
+                    <h2 class="text-yellow-400 text-2xl font-medium uppercase mb-2">Booking --</h2>
+                    <h1 class="text-4xl font-bold uppercase mb-8">Book A Table Online</h1>
 
-      <!-- Booking Form -->
-      <form action="../reservations/booking.php" method="POST" class="grid grid-cols-2 gap-4">
+                    <!-- Booking Form -->
+                    <form action="../reservations/booking.php" method="POST" class="grid grid-cols-2 gap-4">
 
-    <!-- Date & Time -->
-            <div class="col-span-2 md:col-span-1">
-                <label for="datetime" class="block text-lg font-medium">Date & Time</label>
-                <input type="datetime-local" id="datetime" name="datetime" class="w-full mt-2 p-4 rounded-lg text-black" required>
-            </div>
+                        <!-- Date & Time -->
+                        <div class="col-span-2 md:col-span-1">
+                            <label for="datetime" class="block text-lg font-medium">Date & Time</label>
+                            <input type="datetime-local" id="datetime" name="datetime" class="w-full mt-2 p-4 rounded-lg text-black" required>
+                        </div>
 
-            <!-- No of People -->
-            <div class="col-span-2 md:col-span-1">
-                <label for="people" class="block text-lg font-medium">No Of People</label>
-                <input type="number" id="people" name="people" class="w-full mt-2 p-4 rounded-lg text-black" placeholder="No Of People" required>
-            </div>
+                        <!-- No of People -->
+                        <div class="col-span-2 md:col-span-1">
+                            <label for="people" class="block text-lg font-medium">No Of People</label>
+                            <input type="number" id="people" name="people" class="w-full mt-2 p-4 rounded-lg text-black" placeholder="No Of People" required>
+                        </div>
 
-            <!-- Special Request -->
-            <div class="col-span-2">
-                <label for="request" class="block text-lg font-medium">Special Request</label>
-                <textarea id="request" name="request" rows="3" class="w-full mt-2 p-4 rounded-lg text-black" placeholder="Any Special Request"></textarea>
-            </div>
+                        <!-- Special Request -->
+                        <div class="col-span-2">
+                            <label for="request" class="block text-lg font-medium">Special Request</label>
+                            <textarea id="request" name="request" rows="3" class="w-full mt-2 p-4 rounded-lg text-black" placeholder="Any Special Request"></textarea>
+                        </div>
 
-            <!-- Submit Button -->
-            <div class="col-span-2">
-                <button type="submit" class="w-full py-3 mt-4 bg-yellow-500 text-black font-bold text-lg rounded-lg hover:bg-yellow-400 transition duration-300">Submit</button>
-            </div>
-        </form>
-      </div>
+                        <!-- Submit Button -->
+                        <div class="col-span-2">
+                            <button type="submit" class="w-full py-3 mt-4 bg-yellow-500 text-black font-bold text-lg rounded-lg hover:bg-yellow-400 transition duration-300">Submit</button>
+                        </div>
+                    </form>
+                </div>
           </div>
     </div>
 
@@ -296,69 +247,55 @@ ob_start();
     $stmt->execute();
     $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<div class="grid place-items-center mt-64 mb-64">
-  <h2 class="text-center text-yellow-500 text-lg font-medium mb-2">~ TESTIMONIAL ~</h2>
-
-  <!-- Comment form -->
-  <?php if (isset($_SESSION['id'])): ?>
-      <form action="../reservations/comments.php" method="POST" class="mb-4">
-          <textarea name="comment" rows="3" class="border rounded p-2 w-full" placeholder="Write your comment..." required></textarea>
-          <button type="submit" class="mt-2 bg-yellow-500 text-white rounded p-2">Submit</button>
-      </form>
-  <?php else: ?>
-      <p class="text-yellow-500">Please log in to leave a comment.</p>
-  <?php endif; ?>
-
-  <!-- Horizontal scroll container -->
-  <div id="testimonialContainer" class="w-full max-w-screen-lg overflow-x-auto no-scrollbar whitespace-nowrap py-4">
-      <div id="scrollContent" class="inline-flex space-x-4">
-          <!-- Display comments -->
-          <?php foreach ($comments as $comment): ?>
-              <div class="rounded-lg min-w-[300px] bg-white p-4">
-                  <div class="bg-yellow-400 p-6 rounded-lg">
-                      <div class="text-white text-5xl leading-none mb-4">&#10077;</div>
-                      <p class="text-white text-lg font-light"><?= htmlspecialchars($comment['comment']) ?></p>
-                      <p class="mt-6 text-white text-3xl font-bold"><?= htmlspecialchars($comment['first_name']) ?></p>
-                  </div>
-              </div>
-          <?php endforeach; ?>
-      </div>
-  </div>
-</div>
 
 
-<script>
-  const container = document.getElementById('testimonialContainer');
-  const scrollContent = document.getElementById('scrollContent');
+    <div class="grid place-items-center mt-64 mb-64">
+    <h2 class="text-center text-yellow-500 text-lg font-medium mb-2">~ TESTIMONIAL ~</h2>
 
-  // Clone the content to create an infinite effect
-  const clonedContent = scrollContent.cloneNode(true);
-  container.appendChild(clonedContent);
- 
-  let scrollSpeed = 1; // Adjust this value for faster/slower scrolling
+    <!-- Comment form -->
+    <?php if (isset($_SESSION['id'])): ?>
+        <form action="../reservations/comments.php" method="POST" class="mb-4">
+            <textarea name="comment" rows="3" class="border rounded p-2 w-full" placeholder="Write your comment..." required></textarea>
+            <button type="submit" class="mt-2 bg-yellow-500 text-white rounded p-2">Submit</button>
+        </form>
+    <?php else: ?>
+        <p class="text-yellow-500">Please log in to leave a comment.</p>
+    <?php endif; ?>
 
-  function autoScroll() {
-    container.scrollLeft += scrollSpeed;
+    <!-- Horizontal scroll container -->
+    <div id="testimonialContainer" class="w-full max-w-screen-lg overflow-x-auto no-scrollbar whitespace-nowrap py-4">
+        <div id="scrollContent" class="inline-flex space-x-4">
+            <!-- Display comments -->
+            <?php foreach ($comments as $comment): ?>
+                <div class="rounded-lg min-w-[300px] bg-white p-4">
+                    <div class="bg-yellow-400 p-6 rounded-lg">
+                        <div class="text-white text-5xl leading-none mb-4">&#10077;</div>
+                        <p class="text-white text-lg font-light"><?= htmlspecialchars($comment['comment']) ?></p>
+                        <p class="mt-6 text-white text-3xl font-bold"><?= htmlspecialchars($comment['first_name']) ?></p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    </div>
 
-    // If the scroll reaches the end of the original content, adjust scroll position
-    if (container.scrollLeft >= scrollContent.scrollWidth) {
-      container.scrollLeft = 0; // Reset to the start of the original content
-    }
-  }
 
-  // Set the auto-scroll interval
-  setInterval(autoScroll, 20); // Adjust the interval for smoother scrolling
-</script>
+    <!--scroll to the top button-->
+    <button id="scrollToTop" class="fixed bottom-4 right-4 bg-amber-400 text-white rounded-full p-10 text-5xl shadow-lg hidden transition-opacity duration-300">
+        ↑
+    </button>
 
 
-
-
-
-<!--scroll to the top button-->
-<button id="scrollToTop" class="fixed bottom-4 right-4 bg-amber-400 text-white rounded-full p-10 text-5xl shadow-lg hidden transition-opacity duration-300">
-    ↑
-</button>
-
+<!--comments Auto-scroll-->
+<script src="../scrollingUtils/commentsAutoScroll.js"></script>
+<!--scroll to booking-->
+<script src="../scrollingUtils/scrollToBooking.js"></script>
+<!--scroll to contact-->
+<script src="../scrollingUtils/scrollToContact.js"></script>
+<!--scroll-top button-->
+<script src="../scrollingUtils/scrollTopButton.js"></script>
+<!--scroll to about us-->
+<script src="../scrollUtils/scrollToAboutUs.js"></script>
 </body>
 </html>
 
@@ -370,27 +307,4 @@ ob_start();
     });
 </script>
 
-
-<!--scroll-top button-->
-<script>
-        const scrollToTopButton = document.getElementById('scrollToTop');
-
-        window.addEventListener('scroll', () => {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                scrollToTopButton.classList.remove('hidden');
-                scrollToTopButton.classList.add('opacity-100');
-            } else {
-                scrollToTopButton.classList.add('hidden');
-                scrollToTopButton.classList.remove('opacity-100');
-            }
-        });
-
-        scrollToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
-  
 <?php ob_end_flush(); ?>
