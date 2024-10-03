@@ -4,6 +4,9 @@
 </div>
 
 <?php
+$bookings = [];
+
+
 if (isset($_SESSION["id"])) {
     
     if (isset($_POST['cancel'])) {
@@ -45,8 +48,7 @@ if (isset($_SESSION["id"])) {
         echo 'Database error: ' . $e->getMessage();
     }
 }else{
-    header("Location: ../logs/sign-in.php");
-    exit();
+    $error = "You need to log in to view your booking.";
 }
 ?>
 

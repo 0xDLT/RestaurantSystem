@@ -23,16 +23,16 @@ ob_start();
         
         <div class="flex flex-col justify-center items-start h-full p-4">
 
-            <h1 class="text-white text-8xl font-bold  left-0 top-1/2 transform -translate-y-1/2 pl-4 mb-0">Enjoy Our <span class="block mb-0">Delicious Meal</span></h1>
+            <h1 class="mb-14 md:mt-14 text-white text-4xl md:text-6xl lg:text-8xl font-bold  left-0 top-1/2 transform -translate-y-1/2 pl-4 ">Enjoy Our <span class="block mb-0">Delicious Meal</span></h1>
             
-            <p class="text-white  font-bold  left-0 top-1/2 transform -translate-y-1/2 pl-4 w-full max-w-6xl">Welcome to Savory Haven, where culinary dreams come to life! Nestled in the heart of the city, 
+            <p class="mt-14 md:mt-14 text-white  font-bold  left-0 top-1/2 transform -translate-y-1/2 pl-4 w-full max-w-6xl text-sm md:text-base lg:text-lg ">Welcome to Savory Haven, where culinary dreams come to life! Nestled in the heart of the city, 
                 our charming bistro offers a warm, inviting atmosphere perfect for any occasion. Indulge in a seasonal menu crafted with locally sourced ingredients, 
                 featuring vibrant flavors and innovative dishes. From artisanal pastas to mouthwatering desserts, each bite is a celebration of taste. 
                 Pair your meal with our curated selection of wines and craft cocktails. Whether you’re here for a cozy dinner or a lively brunch with friends, 
                 Savory Haven is your go-to destination for unforgettable dining experiences.</p>
             
             <div class="absolute bottom-0 left-0 p-4">
-                <button onclick="scrollToBooking()" class="bg-amber-400 text-white text-6xl mb-10 ml-10 font-bold py-10 px-11 rounded-[30px] hover:bg-white hover:text-amber-400">
+                <button onclick="scrollToBooking()" class="bg-amber-400 text-white text-lg md:text-2xl lg:text-4xl mb-10 ml-10 font-bold py-4 md:py-6 px-6 md:px-8 rounded-[30px] hover:bg-white hover:text-amber-400">
                     BOOK A TABLE
                 </button>
             </div>
@@ -70,11 +70,11 @@ ob_start();
     <!--about us-->
     <div id="about-us" class="container mx-auto px-4 py-8 mt-64" data-aos="fade-up" data-aos-delay="100"> <!-- Staggered delay -->
     <h2 class="text-3xl font-bold text-center mb-6 text-amber-400" data-aos="fade-up" data-aos-delay="200">About Us</h2> <!-- Delayed for the header -->
-    <div class="flex items-center" data-aos="fade-up" data-aos-delay="300"> <!-- Delayed for the flex container -->
-        <img src="../img/restaurant.jpg" alt="Restaurant Image" class="w-1/3 h-auto mr-4 rounded-lg">
+    <div class="flex flex-col md:flex-row items-center" data-aos="fade-up" data-aos-delay="300"> <!-- Delayed for the flex container -->
+        <img src="../img/restaurant.jpg" alt="Restaurant Image" class="w-full md:w-1/2 h-auto mb-4 md:mr-4 rounded-lg">
         <div class="top-1/2 w-2/3 pt-4">
-            <h1 class="text-4xl font-bold mb-4 text-amber-400" data-aos="fade-up" data-aos-delay="400">Welcome to Our Restaurant</h1> <!-- Delayed for the H1 -->
-            <p class="text-gray-700" data-aos="fade-up" data-aos-delay="400"> <!-- Delayed for the paragraph -->
+            <h1 class="text-2xl md:text-4xl font-bold mb-4 text-amber-400" data-aos="fade-up" data-aos-delay="400">Welcome to Our Restaurant</h1> <!-- Delayed for the H1 -->
+            <p class="text-sm md:text-base text-gray-700" data-aos="fade-up" data-aos-delay="400"> <!-- Delayed for the paragraph -->
                 At Savory Haven, we pride ourselves on providing an exceptional dining experience. Our culinary team is dedicated to crafting delicious meals using the freshest ingredients. Whether you are celebrating a special occasion or enjoying a casual meal, our warm and inviting atmosphere will make you feel right at home. Join us for a culinary journey that delights the senses and creates lasting memories.
             </p>
         </div>
@@ -281,7 +281,7 @@ ob_start();
 
 
     <!--scroll to the top button-->
-    <button id="scrollToTop" class="fixed bottom-4 right-4 bg-amber-400 text-white rounded-full p-10 text-5xl shadow-lg hidden transition-opacity duration-300">
+    <button id="scrollToTop" class="fixed bottom-4 right-4 bg-amber-400 text-white rounded-full p-6 md:p-10 text-4xl md:text-5xl shadow-lg hidden transition-opacity duration-300">
         ↑
     </button>
 
