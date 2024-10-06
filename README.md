@@ -13,8 +13,11 @@ First, clone the repository to your local machine:
 git clone https://github.com/0xDLT/restaurantsystem.git
 cd restaurantsystem
 ```
-
 ### Step 2: Create `Config` Folder && Add `database.php` File
+
+- Import The Schema Into Your Project. `schema.sql`
+
+### Step 3: Create `Config` Folder && Add `database.php` File
 
 ```php
 <?php
@@ -36,7 +39,7 @@ try {
 }
 ```
 
-### Step 3: Install Required Packages
+### Step 4: Install Required Packages
 
 ```bash
 npm install
