@@ -1,49 +1,67 @@
-<?php require "../config/database.php";?>
-<div class="bg-blue-500">
-    <?php include "../app/header.php"; ?>
-</div>
-
 <?php 
+require "../config/database.php"; 
+session_start(); 
+
 // Check if the user is already logged in
 if (isset($_SESSION['id'])) {
     header("Location: ../app/App.php");
     exit(); 
 }
 
-    // Check if the form is submitted
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Retrieve form data
-        $firstName = trim($_POST['firstName']);
-        $lastName = trim($_POST['lastName']);
-        $email = trim($_POST['email']);
-        $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT); 
-    
-        try {
-            // Prepare the SQL statement
-            $sql = "INSERT INTO users (first_name, last_name, email, password) VALUES (:first_name, :last_name, :email, :password)";
-            $stmt = $dbconnect->prepare($sql);
-    
-            // Bind parameters
-            $stmt->bindParam(':first_name', $firstName);
-            $stmt->bindParam(':last_name', $lastName);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':password', $password);
-    
-            // Execute the statement
-            if ($stmt->execute()) {
-                echo "New record created successfully";
-                header("Location: ../logs/sign-in.php");
-                exit();
-                // Optionally, redirect or display a success message
-            } else {
-                echo "Error: Unable to execute the query.";
-            }
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-        }
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve and sanitize form data
+    $firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_STRING);
+    $lastName = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_STRING);
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT); 
+    $role = 'standard';
+
+    // Validate email format
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "Invalid email format.";
+        exit();
     }
 
+    try {
+        // Prepare the SQL statement
+        $sql = "INSERT INTO users (first_name, last_name, email, password, role) VALUES (:first_name, :last_name, :email, :password, :role)";
+        $stmt = $dbconnect->prepare($sql);
+
+        // Bind parameters
+        $stmt->bindParam(':first_name', $firstName);
+        $stmt->bindParam(':last_name', $lastName);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':role', $role); 
+
+        // Execute the statement
+        if ($stmt->execute()) {
+            // Fetch the newly created user's ID
+            $userId = $dbconnect->lastInsertId();
+
+            // Now fetch the user details including firstName
+            $stmt = $dbconnect->prepare("SELECT first_name, role FROM users WHERE id = :id");
+            $stmt->bindParam(':id', $userId);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // Store user ID, first name, and role in session
+            $_SESSION['id'] = $userId;
+            $_SESSION['first_name'] = $user['first_name']; // Fetch first name from the database
+            $_SESSION['role'] = $user['role'];
+
+            header("Location: ../app/App.php");
+            exit();
+        } else {
+            echo "Error: Unable to execute the query.";
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+}
 ?>
+
 
 
 

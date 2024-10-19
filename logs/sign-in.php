@@ -7,7 +7,7 @@
 // Check if the user is already logged in
 if (isset($_SESSION['id'])){
     header("Location: ../app/App.php");
-     exit();
+    exit();
 }
 
 
@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve and sanitize form data
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
-
+    
     
 
     try {
@@ -32,6 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Store user ID and first name in the session
             $_SESSION['id'] = $user['id']; 
             $_SESSION['first_name'] = $user['first_name'];
+            $_SESSION['role'] = $user['role'];
+
             // Successful login: redirect the user
                 header("Location: ../app/App.php");
                 exit();
