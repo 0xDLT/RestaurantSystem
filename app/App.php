@@ -40,7 +40,7 @@ ob_start();
     </div>
     
     <!--cards-->
-    <div id='contact' class="container mt-10 mx-auto px-4 py-8 mt-64">
+    <div id='contact' class="container mx-auto px-4 py-8 mt-64">
     <h2 class="text-3xl font-bold text-center mb-6 text-amber-400">Our Services</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div class="bg-white rounded-lg shadow-md p-6 text-center transition-colors duration-300 hover:bg-amber-400 hover:text-white" data-aos="fade-up" data-aos-delay="100">
@@ -81,7 +81,7 @@ ob_start();
     </div>
     </div>
 
-              
+
 
 
     <!-- Food Menu Section -->
@@ -232,7 +232,7 @@ ob_start();
                         </div>
                     </form>
                 </div>
-          </div>
+        </div>
     </div>
 
 
