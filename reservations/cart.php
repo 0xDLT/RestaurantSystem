@@ -35,6 +35,6 @@ if (isset($_SESSION['cart'])) {
     unset($_SESSION['cart']); // Clear the message after displaying it
 }
 
-header("location: ../app/App.php");
+header("location: ../app/cart.php");
 exit();
 ?>
