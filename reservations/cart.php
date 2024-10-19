@@ -2,9 +2,6 @@
 require '../config/database.php';
 session_start();
 
-header("location: ../app/App.php");
-exit();
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Check if the user is logged in
     if (!isset($_SESSION['id'])) {
@@ -12,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
 if (isset($_POST['item_name']) && isset($_POST['price']) && isset($_POST['quantity'])) {
-      $userId = $_SESSION['id']; // Get the user ID from session
+    $userId = $_SESSION['id']; // Get the user ID from session
     $itemName = $_POST['item_name'];
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
@@ -27,8 +24,8 @@ if (isset($_POST['item_name']) && isset($_POST['price']) && isset($_POST['quanti
         echo "Error: " . $e->getMessage();
     }
         $_SESSION['cart'] = 'add to your cart';
-        header('location: ../app/index.php'); 
-        exit();
+        // header('location: ../app/index.php'); 
+        // exit();
     } else {
         echo "Invalid request.";
     }
@@ -37,4 +34,7 @@ if (isset($_SESSION['cart'])) {
     echo "<script>alert('" . $_SESSION['cart'] . "');</>";
     unset($_SESSION['cart']); // Clear the message after displaying it
 }
+
+header("location: ../app/App.php");
+exit();
 ?>

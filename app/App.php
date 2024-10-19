@@ -178,7 +178,7 @@ ob_start();
                                     <button type="submit" class="mt-4 w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded">ADD TO CART</button>
                                 </div>
                             </form>
-                            <form action="./reservations/cart.php" method="POST">
+                            <form action="../reservations/cart.php" method="POST">
                                 <div class="border p-4 rounded-lg bg-white">
                                     <h4 class="text-lg font-semibold">Grilled Salmon</h4>
                                     <p class="font-bold text-yellow-700">$15</p>

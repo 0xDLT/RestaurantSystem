@@ -3,9 +3,6 @@
 require '../config/database.php';
 session_start();
 
-header("location: ../app/App.php");
-exit();
-
 if (isset($_SESSION['id'])) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Check if the required fields are present in the POST request
@@ -31,4 +28,7 @@ if (isset($_SESSION['alert'])) {
     echo "<script>alert('" . $_SESSION['alert'] . "');</script>";
     unset($_SESSION['alert']); // Clear the message after displaying it
 }
+
+header("location: ../app/App.php");
+exit();
 ?>
