@@ -28,7 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && password_verify($password, $user['password'])) {
-            session_start();
             // Store user ID and first name in the session
             $_SESSION['id'] = $user['id']; 
             $_SESSION['first_name'] = $user['first_name'];
