@@ -1,3 +1,4 @@
+<?php ob_start();?>
 <?php require "../config/database.php";?>
 <div class="bg-blue-500">
     <?php include "../app/header.php"; ?>
@@ -35,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Successful login: redirect the user
                 header("Location: ../app/App.php");
-                exit();
+                exit;
         } else {
             echo "Invalid email or password.";
         }
