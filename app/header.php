@@ -51,6 +51,9 @@ if (isset($_SESSION['id'])) {
                     <li><a href="../app/booking.php" class="text-white hover:text-amber-400">Booking</a></li>
                     <li><a href="../app/cart.php" class="text-white hover:text-amber-400">Cart</a></li>
                     <?php if (isset($_SESSION['id'])): ?>
+                            <?php if ($_SESSION['role'] === 'admin'): ?>
+                                <li><a href="../app/dashboard.php" class="text-white hover:text-amber-400">Dashboard</a></li>
+                            <?php endif; ?>
                         <li class="text-white">Welcome, <?php echo htmlspecialchars(strtoupper($_SESSION['first_name'])); ?></li>
                         <li><a href="../logs/sign-out.php" class="text-white hover:text-amber-400">Logout</a></li>
                     <?php else: ?>
